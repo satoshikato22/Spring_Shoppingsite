@@ -1,0 +1,54 @@
+body {
+  padding-top: 50px;
+}
+
+.sidebar {
+  position: fixed;
+  display: block;
+  top: 50px;
+  bottom: 0;
+  background-color: #F4F5F7;
+}
+
+.main {
+  padding-top: 50px;
+  padding-left: 20px;
+  position: fixed;
+  display: block;
+  top: 0px;
+  bottom: 0;
+  overflow:auto;
+}
+
+.page-header {
+  margin-top: 0px;
+}
+/*
+.box {
+	text-align: center;
+    padding: 0.5em 1em;
+    margin:2em 0;
+    font-weight: bold;
+    border: solid 3px #000000;
+}
+*/
+
+
+.box {
+	text-align: center;
+    padding: 0;
+    margin:5px;
+    font-weight: bold;
+    border: solid 1px #000000;
+    width:300px
+}
+
+.box p {
+	margin:0px;
+	padding:0px;
+}
+.box header{
+	margin:0px;
+	padding:0px;
+}
+

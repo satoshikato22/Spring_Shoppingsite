@@ -1,2 +1,1 @@
-INSERT INTO employee (employee_id, employee_name, age)
-VALUES(1, '山田太郎', 30);
+insert into Customer(customerId,password,customerName,birthday,age,role) values('jatgadm@gmail.com','password','加藤怜','1994-09-27',25,'ROLE_ADMIN');

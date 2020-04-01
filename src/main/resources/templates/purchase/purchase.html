@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>購入画面</title>
+</head>
+<body>
+<div th:fragment="purchase_contents">
+<div class="page-header">
+<h1>商品検索画面</h1>
+</div>
+<form action="/product" method="post">
+商品名を入力<input type="text" name="keyword" th:value="${keyword1_value}" />
+<input type="submit" value="送信">
+</form>
+<div class="page-header">
+<h1>購入画面</h1>
+</div>
+<p th:text="${session.cart.size()} > 0 ? ${session.cart.size()} +'種類の商品があります':'カートに商品がありません'"></p>
+
+	<div class="row">
+
+<div th:each="item : ${session.cart}">
+<div class="col-lg-4 box">
+	<p th:text="'商品NO:'+${item.product.id}" />
+	<header>
+	<img th:src="@{/image/{items}.jpg(items=${item.product.id})}" height="50" width="100"></img>
+	</header>
+	<div class="menubody">
+	<p th:text="'商品名'+${item.product.name}" />
+	<p th:text="'商品価格'+${item.product.price}+'円'" />
+	<p th:text="${item.count}+'個'" />
+	<p><a href="/cartRemove" th:href="@{/cartRemove(id=${item.product.id})}">カートから削除</a></p>
+	</div>
+	<span th:if="${session.cart.size() > 0}">
+    	<p><a href="/purchase" th:href="@{/purchase}">購入する</a></p>
+	</span>
+	</div>
+</div>
+	</div>
+
+<span th:if="${session.cart.size() > 0}">
+	<form th:action="@{/purchase}" th:object="${purchaseForm}" method="post">
+	<div class="page-header">
+		<h1>購入フォーム</h1>
+	</div>
+	<label>お名前</label>
+	<br>
+	<div class="form-group" th:classappend="${#fields.hasErrors('customerName')} ? 'has-error'">
+       <input type="text" th:field="*{customerName}"/><br>
+    <span class="text-danger" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}">customerName error</span>
+    </div>
+
+    <label>ご住所</label>
+	<div class="form-group" th:classappend="${#fields.hasErrors('address')} ? 'has-error'">
+       <input type="text" th:field="*{address}" /><br>
+    <span class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">address error</span>
+    </div>
+	<p><input type="submit" value="購入を確定"></p>
+</form>
+</span>
+</div>
+
+</body>
+</html>
